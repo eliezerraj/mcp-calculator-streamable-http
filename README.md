@@ -1,5 +1,12 @@
+# create venv
+python3 -m venv .venv
+
 # activate
 source .venv/bin/activate
+
+#install dependecies
+uv add mcp
+uv add 'mcp[cli]'
 
 # run
 uv run mcp dev server.py
@@ -9,7 +16,7 @@ python3 server.py
 
 # test (agent auto)
 
-use the mcp calculator_streamable_http add 1 to 1 and show the result
+:use the mcp calculator_streamable_http add 1 to 1 and show the result
 
 # curl
 1 Initialize Session
@@ -26,7 +33,7 @@ curl -X POST http://localhost:8000/mcp \
 	"clientInfo":{"name":"test-client",
 	"version":"1.0.0"}}}'
 
-1 Initialize Session and get session-id
+1.1 Initialize Session and get session-id
 curl -X POST http://localhost:8000/mcp \
   -H "Content-Type: application/json" \
   -H "MCP-Protocol-Version: 2025-06-18" \
