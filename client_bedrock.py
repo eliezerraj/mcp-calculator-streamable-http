@@ -13,7 +13,7 @@ client = boto3.client("bedrock-runtime", region_name="us-east-1")
 model_id = "amazon.nova-pro-v1:0"
 
 # Start a conversation with the user message.
-user_message = "Extract two numbers and the operation (add, sub, multiply, divide) from this request: 'add 1 to 2 and show the result'"
+user_message = "add 2 to 3 and show the result in a sentence'"
 conversation = [
     {
         "role": "user",
@@ -21,6 +21,7 @@ conversation = [
     }
 ]
 
+print("=========================")
 print("==> type: converse_stream\n")
 
 try:
@@ -35,13 +36,15 @@ try:
     for chunk in streaming_response["stream"]:
         if "contentBlockDelta" in chunk:
             text = chunk["contentBlockDelta"]["delta"]["text"]
-            print(text, end="")
+            print(text, end=" ")
 
 except (ClientError, Exception) as e:
     print(f"ERROR: Can't invoke '{model_id}'. Reason: {e}")
     exit(1)
 
-print("\n==> type: converse\n")
+print("\n")
+print("=========================")
+print("==> type: converse\n")
 
 try:
     # Send the message to the model, using a basic inference configuration.
